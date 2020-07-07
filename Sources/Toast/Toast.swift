@@ -65,19 +65,19 @@ extension Style {
     public var foregroundColor: UIColor {return .white}
     public var activitySize: CGSize {return CGSize(width: 180, height: 180)}
     #elseif os(OSX)
-    public var fontSize: CGFloat {return 16}
+    public var fontSize: CGFloat {return 12}
     public var font: NSFont {
         return NSFont.systemFont(ofSize: fontSize)
     }
     public var horizontalMargin: CGFloat {return 10}
     public var verticalMargin: CGFloat {return 5}
     public var cornerRadius: CGFloat {return 6}
-    public var backgroundColor: NSColor {return .black}
-    public var foregroundColor: NSColor {return .white}
+    public var backgroundColor: NSColor {return .textBackgroundColor}
+    public var foregroundColor: NSColor {return .labelColor}
     public var activitySize: CGSize {return CGSize(width: 100, height: 100)}
     #endif
-    public var fadeInOutDuration: CGFloat {return 1.0}
-    public var fadeInOutDelay: CGFloat {return 1.0}
+    public var fadeInOutDuration: CGFloat {return 0.5}
+    public var fadeInOutDelay: CGFloat {return 0.5}
 }
 
 public struct DefaultStyle: Style {
@@ -167,7 +167,7 @@ class ToastView: View {
         text.string = message
         text.font = Font.systemFont(ofSize: style.fontSize)
         text.fontSize = style.fontSize
-        text.alignmentMode = "center"
+        text.alignmentMode = CATextLayerAlignmentMode(rawValue: "center")
         text.foregroundColor = style.foregroundColor.cgColor
         text.backgroundColor = style.backgroundColor.cgColor
         text.contentsScale = _layer.contentsScale // For Retina Display
